@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public final class PersonServiceDefault implements PersonService {
+public class PersonServiceDefault implements PersonService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceDefault.class);
 
