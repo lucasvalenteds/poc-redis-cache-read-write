@@ -8,13 +8,18 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name = "PERSON")
 @Data
 @NoArgsConstructor
-public class Person {
+public class Person implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 5090380600159441769L;
 
     @Id
     @Column(name = "PERSON_ID")

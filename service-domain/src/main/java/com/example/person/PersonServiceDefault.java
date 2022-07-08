@@ -3,6 +3,8 @@ package com.example.person;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -20,8 +22,8 @@ public class PersonServiceDefault implements PersonService {
 
     @Override
     @Transactional
+    @CachePut(value = "person", key = "#result.id")
     public Person create(String name, Integer age) {
-
         final var person = new Person();
         person.setName(name);
         person.setAge(age);
@@ -33,6 +35,7 @@ public class PersonServiceDefault implements PersonService {
     }
 
     @Override
+    @Cacheable(value = "person", key = "#personId")
     public Person findOne(UUID personId) throws PersonNotFoundException {
         final var personNotCached = personRepository.findById(personId);
         if (personNotCached.isPresent()) {
