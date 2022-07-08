@@ -5,6 +5,7 @@ import com.example.person.PersonResponse;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -82,7 +83,7 @@ class ApplicationTests {
         ApplicationTests.personId = getPersonIdFromLocationHeader(exchangeResult);
     }
 
-    @Test
+    @RepeatedTest(2)
     @Order(2)
     void findingPersonCreatedById() {
         final var exchangeResult = webTestClient.get()
