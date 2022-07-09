@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "poc-redis-cache-read-write"
+rootProject.name = "poc-redis-cache-aside"
