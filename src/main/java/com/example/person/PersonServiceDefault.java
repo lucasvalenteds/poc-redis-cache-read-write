@@ -49,7 +49,7 @@ public class PersonServiceDefault implements PersonService {
 
             final var person = personNotCached.get();
             cache.put(personId, person);
-            LOGGER.info("Person cached (key={}, value={}", personId, person);
+            LOGGER.info("Person cached (key={}, value={})", personId, person);
 
             return person;
         }

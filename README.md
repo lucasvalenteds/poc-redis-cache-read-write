@@ -42,7 +42,7 @@ Logging output after finding the person by ID multiple times:
 
 ```text
 2022-07-08T22:32:39.251-03:00  INFO 50734 --- [o-auto-1-exec-2] com.example.person.PersonServiceDefault  : Person retrieved from database (personId=432d0066-8be3-4576-8737-b3c42f02ebad)
-2022-07-08T22:32:39.255-03:00  INFO 50734 --- [o-auto-1-exec-2] com.example.person.PersonServiceDefault  : Person cached (key=432d0066-8be3-4576-8737-b3c42f02ebad, value=Person(id=432d0066-8be3-4576-8737-b3c42f02ebad, name=John Smith, age=45)
+2022-07-08T22:32:39.255-03:00  INFO 50734 --- [o-auto-1-exec-2] com.example.person.PersonServiceDefault  : Person cached (key=432d0066-8be3-4576-8737-b3c42f02ebad, value=Person(id=432d0066-8be3-4576-8737-b3c42f02ebad, name=John Smith, age=45))
 2022-07-08T22:32:39.273-03:00  INFO 50734 --- [o-auto-1-exec-3] com.example.person.PersonServiceDefault  : Person retrieved from cache (personId=432d0066-8be3-4576-8737-b3c42f02ebad)
 2022-07-08T22:32:39.281-03:00  INFO 50734 --- [o-auto-1-exec-4] com.example.person.PersonServiceDefault  : Person retrieved from cache (personId=432d0066-8be3-4576-8737-b3c42f02ebad)
 2022-07-08T22:32:39.289-03:00  INFO 50734 --- [o-auto-1-exec-5] com.example.person.PersonServiceDefault  : Person retrieved from cache (personId=432d0066-8be3-4576-8737-b3c42f02ebad)
