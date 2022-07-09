@@ -18,14 +18,25 @@ automated tests with database containers provisioned by TestContainers and tests
 
 ## Preview
 
-Cache Aside Strategy execution flow:
+Cache Aside Strategy write execution flow:
 
 ```mermaid
 flowchart TB
-    A[GET /people/123] --> B{is person\nwith ID 123\ncached?}
+    A[POST /people\n]
+    B[Persist person\nwith ID 1]
+    C[Location /people/1]
+
+    A --> B --> C
+```
+
+Cache Aside Strategy read execution flow:
+
+```mermaid
+flowchart TB
+    A[GET /people/1] --> B{is person\nwith ID 1\ncached?}
     B --> |Yes| C[Return the\nPerson]
-    B --> |No| D{is person\nwith ID 123\npersisted? }
-    D --> |Yes| E[Cache person\nwith ID 123] --> F[Return the\nPerson]
+    B --> |No| D{is person\nwith ID 1\npersisted? }
+    D --> |Yes| E[Cache person\nwith ID 1] --> F[Return the\nPerson]
     D --> |No| G[Return Error]
 ```
 
