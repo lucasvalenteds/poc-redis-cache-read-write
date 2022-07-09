@@ -123,17 +123,7 @@ class ApplicationTests {
     @NullAndEmptySource
     @ValueSource(strings = "   ")
     void creatingPersonWithoutName(String name) {
-        final var personRequest = PersonRequest.builder()
-                .name(name)
-                .age(45)
-                .build();
-
-        webTestClient.post()
-                .uri("/people")
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(personRequest))
-                .exchange()
-                .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
+        testCreatePersonWithInvalidName(name);
     }
 
     @Test
@@ -143,17 +133,7 @@ class ApplicationTests {
 
     @Test
     void creatingPersonWithoutAge() {
-        final var personRequest = PersonRequest.builder()
-                .name("John Smith")
-                .age(null)
-                .build();
-
-        webTestClient.post()
-                .uri("/people")
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(personRequest))
-                .exchange()
-                .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
+        testCreatePersonWithInvalidAge(null);
     }
 
     @Test
@@ -164,17 +144,6 @@ class ApplicationTests {
     @Test
     void creatingPersonTooOld() {
         testCreatePersonWithInvalidAge(201);
-    }
-
-    private UUID getPersonIdFromLocationHeader(EntityExchangeResult<Void> exchangeResult) {
-        final var responseHeaders = exchangeResult.getResponseHeaders();
-        final var location = responseHeaders.getLocation();
-        assert location != null;
-
-        final var segments = location.toString().split("/");
-        final var lastSegment = segments[segments.length - 1];
-
-        return UUID.fromString(lastSegment);
     }
 
     private void testCreatePersonWithInvalidName(String name) {
@@ -203,5 +172,16 @@ class ApplicationTests {
                 .body(BodyInserters.fromValue(personRequest))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    private UUID getPersonIdFromLocationHeader(EntityExchangeResult<Void> exchangeResult) {
+        final var responseHeaders = exchangeResult.getResponseHeaders();
+        final var location = responseHeaders.getLocation();
+        assert location != null;
+
+        final var segments = location.toString().split("/");
+        final var lastSegment = segments[segments.length - 1];
+
+        return UUID.fromString(lastSegment);
     }
 }
