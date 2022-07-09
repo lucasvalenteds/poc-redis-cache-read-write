@@ -6,6 +6,3 @@ pluginManagement {
 }
 
 rootProject.name = "poc-redis-cache-read-write"
-
-include(":service-api")
-include(":service-domain")
