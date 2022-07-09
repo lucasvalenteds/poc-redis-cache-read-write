@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @AutoConfigureWebTestClient
 @Testcontainers
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class ApplicationTests {
+class ApplicationTest {
 
     @Container
     private static final PostgreSQLContainer<?> POSTGRES_CONTAINER =
