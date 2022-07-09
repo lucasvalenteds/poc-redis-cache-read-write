@@ -66,7 +66,7 @@ class ApplicationTests {
     @Test
     @Order(1)
     void creatingPerson() {
-        ApplicationTests.personRequest = PersonRequest.builder()
+        personRequest = PersonRequest.builder()
                 .name("John Smith")
                 .age(45)
                 .build();
@@ -80,7 +80,7 @@ class ApplicationTests {
                 .expectHeader().exists(HttpHeaders.LOCATION)
                 .expectBody().isEmpty();
 
-        ApplicationTests.personId = getPersonIdFromLocationHeader(exchangeResult);
+        personId = getPersonIdFromLocationHeader(exchangeResult);
     }
 
     @RepeatedTest(10)
