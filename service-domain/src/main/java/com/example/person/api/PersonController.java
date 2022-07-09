@@ -1,9 +1,13 @@
 package com.example.person.api;
 
+import com.example.person.PersonNotFoundException;
 import com.example.person.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.UUID;
 
+@ControllerAdvice
 @RestController
 @RequestMapping("/people")
 public class PersonController {
@@ -51,5 +56,15 @@ public class PersonController {
 
         return ResponseEntity.status(HttpStatusCode.valueOf(200))
                 .body(personResponse);
+    }
+
+    @ExceptionHandler(PersonNotFoundException.class)
+    public ResponseEntity<ProblemDetail> personNotFoundException(PersonNotFoundException exception) {
+        final var responseBody = ProblemDetail.forStatus(404)
+                .withTitle("Person not found by ID")
+                .withDetail("No person with ID " + exception.getPersonId() + " exists");
+
+        return ResponseEntity.status(responseBody.getStatus())
+                .body(responseBody);
     }
 }
