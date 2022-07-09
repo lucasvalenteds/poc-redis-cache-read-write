@@ -83,7 +83,7 @@ class ApplicationTests {
         ApplicationTests.personId = getPersonIdFromLocationHeader(exchangeResult);
     }
 
-    @RepeatedTest(2)
+    @RepeatedTest(10)
     @Order(2)
     void findingPersonCreatedById() {
         final var exchangeResult = webTestClient.get()
