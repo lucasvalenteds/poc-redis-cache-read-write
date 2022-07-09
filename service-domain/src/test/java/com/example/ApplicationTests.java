@@ -1,7 +1,7 @@
 package com.example;
 
-import com.example.person.PersonRequest;
-import com.example.person.PersonResponse;
+import com.example.person.api.PersonRequest;
+import com.example.person.api.PersonResponse;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

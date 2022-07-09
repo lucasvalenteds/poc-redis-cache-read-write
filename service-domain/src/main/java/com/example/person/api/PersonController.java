@@ -1,5 +1,6 @@
-package com.example.person;
+package com.example.person.api;
 
+import com.example.person.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.person;
+package com.example.person.api;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
